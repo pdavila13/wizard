@@ -13,7 +13,25 @@
                     <span class="sr-only">20% Complete</span>
                 </div>
             </div>
-            
+
+            <wizard>
+                <wizard-step title="Usuari" active="true">
+                    Step 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, autem dolorem, doloremque doloribus expedita fugit inventore, ipsa itaque molestias nihil pariatur possimus quidem saepe sed sit ut veritatis vero voluptas.
+                </wizard-step>
+                <wizard-step title="Dades personals">
+                    Step 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur consequuntur dicta dolorum ducimus, impedit, in incidunt ipsa itaque, maiores nulla quaerat quam quod repellendus repudiandae velit. Aliquid deleniti eos magni?
+                </wizard-step>
+                <wizard-step title="Estudis i curs">
+                    Step 3: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet earum ipsum natus, quo suscipit veritatis voluptas! Delectus distinctio eligendi impedit, maxime, mollitia nesciunt quae, quo reiciendis soluta tempore vero voluptatibus!
+                </wizard-step>
+                <wizard-step title="Moduls professionals">
+                    Step 4: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias facere ipsa laudantium libero necessitatibus sed, vitae voluptatem. Deleniti harum laborum laudantium maxime nam ratione rem repellat reprehenderit sit suscipit!
+                </wizard-step>
+                <wizard-step title="Unitats formatives">
+                    Step 5: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolor eum harum non nulla. Beatae iusto nulla, officiis perferendis porro quam unde. Eligendi, est officiis. Possimus, praesentium voluptate? Dignissimos, quisquam?
+                </wizard-step>
+            </wizard>
+
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs nav-justified">
