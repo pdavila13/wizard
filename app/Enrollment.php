@@ -10,6 +10,15 @@ class Enrollment extends Model implements Stateful
 {
     use StatefulTrait;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'state'
+    ];
+
     /*
      * Get the user record associated with the user
      */
@@ -32,7 +41,7 @@ class Enrollment extends Model implements Stateful
      * @var array
      */
     protected $states = [
-        'step1' => ['inital' => true],
+        'step1' => ['initial' => true],
         'step2' => ['final' => true]
     ];
 
@@ -51,4 +60,21 @@ class Enrollment extends Model implements Stateful
             'to' => 'step1'
         ]
     ];
+
+    /**
+     * @return bool
+     */
+    protected function validateStep1Step2()
+    {
+        if ($this->user_id !=null) return true;
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function validateStep2Step1()
+    {
+        return false;
+    }
 }

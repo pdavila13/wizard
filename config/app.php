@@ -169,6 +169,7 @@ return [
          * See: https://github.com/acacha/llum
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+        Acacha\Stateful\Providers\StatefulServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Menu\Laravel\MenuServiceProvider::class,
