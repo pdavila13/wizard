@@ -25,4 +25,14 @@ class Enrollment extends Model implements Stateful
     {
         return $this->hasOne('App\Person');
     }
+
+    /**
+     * Enrollment States
+     *
+     * @var array
+     */
+    protected $states = [
+        'step1' => ['inital' => true],
+        'step2' => ['final' => true]
+    ];
 }
