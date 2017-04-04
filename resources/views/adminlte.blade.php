@@ -15,8 +15,10 @@
                     </div>
                 </div>
 
+                <h4>Matrícula</h4>
+
                 <wizard>
-                    <wizard-step title="Usuari" active="true">
+                    <wizard-step title="Usuari">
                         Step 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, autem dolorem, doloremque doloribus expedita fugit inventore, ipsa itaque molestias nihil pariatur possimus quidem saepe sed sit ut veritatis vero voluptas.
                     </wizard-step>
                     <wizard-step title="Dades personals">

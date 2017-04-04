@@ -1,20 +1,23 @@
 <template>
-    <div role="tabpanel" class="tab-pane" :class="{'active': active}" :id="id">
+    <div role="tabpanel" class="tab-pane" :class="{'active': isActive}" :id="id">
         <slot></slot>
     </div>
 </template>
 
 <script>
   import voca from 'voca'
+  import {store} from './Store.js'
+
   export default {
+    data () {
+      return {
+        currentStep: store.currentStep
+      }
+    },
     props: {
       title: {
         type: String,
         require: true
-      },
-      active: {
-        type: [Boolean,String],
-        default: false
       }
     },
     computed: {
@@ -23,6 +26,9 @@
       },
       link: function () {
         return '#' + this.id
+      },
+      isActive: function () {
+        return this.currentStep === thid.id
       }
     },
     mounted() {

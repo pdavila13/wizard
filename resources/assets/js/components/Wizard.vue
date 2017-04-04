@@ -1,8 +1,8 @@
 <template>
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs nav-justified">
-            <li v-for="step in steps" :class="{'active':step.active}">
-                <a :href="step.link" :aria-controls="step.id" data-toggle="tab">{{ step.title }}</a>
+            <li v-for="step in steps" :class="{'active':step.active}" @click="stepChanged($event.target.id)">
+                <a :href="step.link" :id="step.id" :aria-controls="step.id" data-toggle="tab">{{ step.title }}</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -19,27 +19,27 @@
 </template>
 
 <script>
+  import {store} from './Store.js'
+
   export default {
     data () {
       return {
         steps: [],
-        currentStep: 1
+          currentStep: store.currentStep
       }
     },
     mounted () {
       console.log('Component mounted')
         this.$children.forEach( step => {
-          this.steps.push ({
-            'id': step.id,
-            'link': step.link,
-            'title': step.title,
-            'active': step.active
-          });
+          if (step.active) {
+            this.currentStep = step.id
+          }
+          this.steps.push(step)
         })
     },
     methods: {
       stepChanged: function (step) {
-        this.currentStep = step
+        store.currentStep = step
       }
     }
   }
