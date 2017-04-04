@@ -8,6 +8,12 @@
 @section('main-content')
     <div class="container-fluid spark-screen">
         <div class="row">
+            <div class="progress progress-sm active">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                    <span class="sr-only">20% Complete</span>
+                </div>
+            </div>
+            
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs nav-justified">
@@ -27,7 +33,6 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                         </ul>
                     </li>
-                    <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
