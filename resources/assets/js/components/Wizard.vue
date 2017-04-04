@@ -19,13 +19,13 @@
 </template>
 
 <script>
-  import {store} from './Store.js'
+  import {store} from './Store'
 
   export default {
     data () {
       return {
         steps: [],
-          currentStep: store.currentStep
+        currentStep: store.currentStep
       }
     },
     mounted () {

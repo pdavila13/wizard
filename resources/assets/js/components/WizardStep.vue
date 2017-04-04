@@ -6,7 +6,7 @@
 
 <script>
   import voca from 'voca'
-  import {store} from './Store.js'
+  import {store} from './Store'
 
   export default {
     data () {
@@ -21,14 +21,14 @@
       }
     },
     computed: {
+      isActive: function () {
+        this.currentStep === this.id
+      },
       id: function () {
         return voca.latinise(voca.camelCase(this.title))
       },
       link: function () {
         return '#' + this.id
-      },
-      isActive: function () {
-        return this.currentStep === thid.id
       }
     },
     mounted() {
