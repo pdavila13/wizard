@@ -18,6 +18,8 @@ class CreatePeopleTable extends Migration
             $table->string('adress');
             $table->string('city');
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
         });
     }
 

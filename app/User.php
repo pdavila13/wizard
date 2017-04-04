@@ -34,4 +34,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Enrollment');
     }
+
+    /*
+     * Get the person record associated with the person
+     */
+    public function person()
+    {
+        return $this->hasOne('App\Person');
+    }
 }

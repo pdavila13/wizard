@@ -17,6 +17,10 @@
 
                 <h4>Matrícula</h4>
 
+                <form-user>
+
+                </form-user>
+
                 <wizard>
                     <wizard-step title="Usuari">
                         Step 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, autem dolorem, doloremque doloribus expedita fugit inventore, ipsa itaque molestias nihil pariatur possimus quidem saepe sed sit ut veritatis vero voluptas.

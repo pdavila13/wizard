@@ -23,5 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
     Route::get('adminlte', 'AdminlteController@index')->name('adminlte');
+    Route::get('users', 'UsersController@fetchUsers');
+    Route::post('/enrollment/users', 'EnrollmentController@user');
+    Route::post('/enrollment/person', 'EnrollmentController@person');
+
 
 });
