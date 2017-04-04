@@ -35,4 +35,20 @@ class Enrollment extends Model implements Stateful
         'step1' => ['inital' => true],
         'step2' => ['final' => true]
     ];
+
+    /**
+     * Enrollment State Transitions
+     *
+     * @var array
+     */
+    protected $transitions = [
+        'step1step2' => [
+            'from' => 'step1',
+            'to' => 'step2'
+        ],
+        'step2step1' => [
+            'from' => 'step2',
+            'to' => 'step1'
+        ]
+    ];
 }
