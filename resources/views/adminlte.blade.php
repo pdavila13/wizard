@@ -17,13 +17,9 @@
 
                 <h4>Matrícula</h4>
 
-                <form-user>
-
-                </form-user>
-
                 <wizard>
-                    <wizard-step title="Usuari">
-                        Step 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, autem dolorem, doloremque doloribus expedita fugit inventore, ipsa itaque molestias nihil pariatur possimus quidem saepe sed sit ut veritatis vero voluptas.
+                    <wizard-step title="Usuari" active="true">
+                        <form-user></form-user>
                     </wizard-step>
                     <wizard-step title="Dades personals">
                         Step 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur consequuntur dicta dolorum ducimus, impedit, in incidunt ipsa itaque, maiores nulla quaerat quam quod repellendus repudiandae velit. Aliquid deleniti eos magni?

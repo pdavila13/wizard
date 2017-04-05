@@ -11275,9 +11275,18 @@ module.exports = function bind(fn, thisArg) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return store; });
+var state = {
+    currentStep: null
+};
+
 var store = {
-    currentStep: 'usuari'
+    state: state,
+
+    changeStep: function changeStep(step) {
+        state.currentStep = step;
+    }
 };
 
 /***/ }),
@@ -12833,6 +12842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -12840,7 +12850,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       steps: [],
-      currentStep: __WEBPACK_IMPORTED_MODULE_0__Store__["a" /* store */].currentStep
+      state: __WEBPACK_IMPORTED_MODULE_0__Store__["a" /* state */]
     };
   },
   mounted: function mounted() {
@@ -12849,7 +12859,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     console.log('Component mounted');
     this.$children.forEach(function (step) {
       if (step.active) {
-        _this.currentStep = step.id;
+        __WEBPACK_IMPORTED_MODULE_0__Store__["b" /* store */].changeStep(step.id);
       }
       _this.steps.push(step);
     });
@@ -12857,7 +12867,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     stepChanged: function stepChanged(step) {
-      __WEBPACK_IMPORTED_MODULE_0__Store__["a" /* store */].currentStep = step;
+      __WEBPACK_IMPORTED_MODULE_0__Store__["b" /* store */].changeStep(step);
+    },
+    getStepByNumber: function getStepByNumber(step) {
+      return this.stepsByName[step - 1];
+    },
+    next: function next() {
+      if (this.currentStepNumber + 1 <= this.steps.length) {
+        __WEBPACK_IMPORTED_MODULE_0__Store__["b" /* store */].changeStep(this.getStepByNumber(this.currentStepNumber + 1));
+      }
+    },
+    previous: function previous() {
+      if (this.currentStepNumber - 1 >= 0) {
+        __WEBPACK_IMPORTED_MODULE_0__Store__["b" /* store */].changeStep(this.getStepByNumber(this.currentStepNumber - 1));
+      }
+    },
+    finish: function finish() {
+      console.log('TODO');
+    }
+  },
+  computed: {
+    stepsByName: function stepsByName() {
+      return this.steps.map(function (step) {
+        return step.id;
+      });
+    },
+    currentStepNumber: function currentStepNumber() {
+      return this.stepsByName.indexOf(__WEBPACK_IMPORTED_MODULE_0__Store__["a" /* state */].currentStep) + 1;
+    },
+    first: function first() {
+      return this.currentStepNumber === 1;
+    },
+    last: function last() {
+      return this.currentStepNumber === this.steps.length;
     }
   }
 });
@@ -12884,7 +12926,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      currentStep: __WEBPACK_IMPORTED_MODULE_1__Store__["a" /* store */].currentStep
+      state: __WEBPACK_IMPORTED_MODULE_1__Store__["a" /* state */]
     };
   },
 
@@ -12892,11 +12934,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     title: {
       type: String,
       require: true
+    },
+    active: {
+      type: [String, Boolean],
+      default: false
     }
   },
   computed: {
     isActive: function isActive() {
-      this.currentStep === this.id;
+      return __WEBPACK_IMPORTED_MODULE_1__Store__["a" /* state */].currentStep === this.id;
     },
     id: function id() {
       return __WEBPACK_IMPORTED_MODULE_0_voca___default.a.latinise(__WEBPACK_IMPORTED_MODULE_0_voca___default.a.camelCase(this.title));
@@ -43328,7 +43374,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((_vm.steps), function(step) {
     return _c('li', {
       class: {
-        'active': step.active
+        'active': step.isActive
       },
       on: {
         "click": function($event) {
@@ -43339,28 +43385,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": step.link,
         "id": step.id,
-        "aria-controls": step.id,
-        "data-toggle": "tab"
+        "aria-controls": step.id
       }
     }, [_vm._v(_vm._s(step.title))])])
   })), _vm._v(" "), _c('div', {
     staticClass: "tab-content"
-  }, [_vm._t("default")], 2), _vm._v(" "), _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_vm._t("default")], 2), _vm._v(" "), _c('div', {
     staticClass: "box-footer"
-  }, [_c('button', {
+  }, [(!_vm.first) ? _c('button', {
     staticClass: "btn btn-primary btn-flat pull-left",
     attrs: {
       "type": "submit"
+    },
+    on: {
+      "click": function($event) {
+        _vm.previous()
+      }
     }
-  }, [_vm._v("Previous")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Previous")]) : _vm._e(), _vm._v(" "), (!_vm.last) ? _c('button', {
     staticClass: "btn btn-primary btn-flat pull-right",
     attrs: {
       "type": "submit"
+    },
+    on: {
+      "click": function($event) {
+        _vm.next()
+      }
     }
-  }, [_vm._v("Next")])])
-}]}
+  }, [_vm._v("Next")]) : _vm._e(), _vm._v(" "), (_vm.last) ? _c('button', {
+    staticClass: "btn btn-primary btn-flat pull-right",
+    attrs: {
+      "type": "submit"
+    },
+    on: {
+      "click": function($event) {
+        _vm.finish()
+      }
+    }
+  }, [_vm._v("Finish")]) : _vm._e()])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
