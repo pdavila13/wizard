@@ -1,7 +1,6 @@
 <template>
     <form method="post" @submit.prevent="submit" @keydown="form.errors.clear($event.target.user)">
         <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('user') }">
-
             <label for="user">User:</label>
 
             <select class="form-control select2" id="user" style="width: 100%">
@@ -18,31 +17,34 @@
 </template>
 
 <script>
+import FormMixin from './formMixin.js'
 import Form from 'acacha-forms'
 
 export default {
+  mixins: [FormMixin],
   data: function () {
     return {
       form: new Form( {user: ''}),
-        users: []
+      users: []
     }
   },
   methods: {
     submit () {
       this.form.post('/enrollment/user')
       .then(response => {
-        console.log('TODO')
-        this.$emit('next')
+        console.log('Enrollment user form submitted OK!')
+        this.$bus.$emit('formSubmit')
       })
       .catch(error => {
-        console.log('ERROR')
+        console.log('Enrollment user form error submitting:' + error)
       })
     },
     initializeSelect2() {
       var component = this
       $(".select2").select2().on('TODO', function (event) {
         component.form.set('user', userId)
-      });
+        component.form.errors.clear()
+      })
     },
     fetchUsers() {
       axios.get('/users').then(response => {
@@ -51,12 +53,13 @@ export default {
     }
   },
   mounted() {
+    console.log('Component Form User mounted.')
     this.initializeSelect2(),
     this.fetchUsers()
   },
   watch: {
     'form.user': function (user) {
-        // TODO
+        // TODO API SELECT: SELECIONAR el user amb el user.od
     }
   }
 }
